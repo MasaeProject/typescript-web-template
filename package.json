@@ -1,0 +1,29 @@
+{
+  "name": "typescript-web-template",
+  "version": "0.0.1",
+  "description": "雅诗TS网页项目模板",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miyabi-project/typescript-web-template.git"
+  },
+  "keywords": [
+    "typescript",
+    "template"
+  ],
+  "author": "KagurazakaYashi",
+  "license": "MulanPSL-2.0",
+  "bugs": {
+    "url": "https://github.com/miyabi-project/typescript-web-template/issues"
+  },
+  "homepage": "https://github.com/miyabi-project/typescript-web-template#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "ts-loader": "^9.4.1",
+    "typescript": "^4.8.4",
+    "webpack": "^5.74.0"
+  }
+}

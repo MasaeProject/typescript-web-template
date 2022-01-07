@@ -1,0 +1,20 @@
+# 系統快取檔案
+._*
+.DS_Store
+Thumbs.db
+__*
+# NPM
+node_modules
+# 生成結果檔案
+dist/*
+bin/*
+*.exe
+# 日誌檔案
+*.log
+# 本地配置檔案
+web.config
+# 壓縮包
+*.7z
+*.zip
+*.xz
+*.tar.*
