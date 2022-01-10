@@ -6,9 +6,10 @@
 
 制作中...
 
-## 使用的 NPM 包:
+## 部分构造细节:
 
-`npm install --save-dev typescript ts-loader webpack http-server`
+- `npm install --save-dev typescript ts-loader webpack webpack-cli http-server`
+- `./node_modules/typescript/bin/tsc --init`
 
 ## 协议
 
