@@ -6,7 +6,9 @@
   "scripts": {
     "test": "webpack --mode development --progress",
     "build": "webpack --mode production --progress",
-    "serve": "http-server"
+    "serve": "http-server",
+    "watch": "webpack --mode development --progress --watch",
+    "debug": "npm run watch & npm run serve"
   },
   "repository": {
     "type": "git",
