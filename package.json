@@ -4,11 +4,11 @@
   "description": "雅诗TS网页项目模板",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "webpack --mode development --progress",
-    "build": "webpack --mode production --progress",
-    "serve": "http-server",
+    "build": "webpack --mode development --progress",
+    "release": "webpack --mode production --progress",
+    "serve": "webpack-dev-server --mode development --progress --host 127.0.0.1 --port 9000 --open",
     "watch": "webpack --mode development --progress --watch",
-    "debug": "npm run watch & npm run serve"
+    "debug": "npm run watch & http-server"
   },
   "repository": {
     "type": "git",
@@ -25,10 +25,12 @@
   },
   "homepage": "https://github.com/miyabi-project/typescript-web-template#readme",
   "devDependencies": {
+    "html-webpack-plugin": "^5.5.0",
     "http-server": "^14.1.1",
     "ts-loader": "^9.4.1",
     "typescript": "^4.8.4",
     "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.11.1"
   }
 }
