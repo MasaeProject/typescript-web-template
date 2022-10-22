@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    entry: './index.ts',
+    entry: './src/index.ts',
     module: {
         rules: [
             {
@@ -30,7 +30,6 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: 'index.html'
-        }),
-        new webpack.HotModuleReplacementPlugin()
+        })
     ]
 };
