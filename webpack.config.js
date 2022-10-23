@@ -9,7 +9,12 @@ module.exports = {
                 test: /\.tsx?$/,
                 use: 'ts-loader',
                 exclude: /node_modules/
-            }
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader'],
+                exclude: /node_modules/
+            },
         ]
     },
     resolve: {
@@ -29,7 +34,11 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: 'index.html'
+            template: 'index.html',
+            inject: true,
+            js: ['bundle.js'],
+            css: ["style.css"]
         })
-    ]
+    ],
+    devtool: 'eval-source-map'
 };

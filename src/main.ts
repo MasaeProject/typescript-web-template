@@ -1,6 +1,6 @@
 export default class Main {
     constructor() {
-        const helloworld: HTMLParagraphElement = document.getElementById('helloworld') as HTMLParagraphElement;
-        helloworld.innerText = 'Hello World!';
+        const 标题框: HTMLHeadingElement = document.getElementById('helloworld') as HTMLHeadingElement;
+        标题框.innerText = 'Hello World!';
     }
 }

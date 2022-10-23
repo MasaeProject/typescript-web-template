@@ -8,7 +8,7 @@
 
 ## 部分构造细节:
 
-- `npm install --save-dev typescript ts-loader webpack webpack-cli http-server webpack-dev-server html-webpack-plugin`
+- `npm install --save-dev typescript ts-loader webpack webpack-cli http-server webpack-dev-server html-webpack-plugin css-loader file-loader url-loader`
 - `./node_modules/typescript/bin/tsc --init`
 
 ## 协议
