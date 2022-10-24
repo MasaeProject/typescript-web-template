@@ -18,3 +18,5 @@ web.config
 *.zip
 *.xz
 *.tar.*
+# 其他
+.VSCodeCounter
