@@ -1,14 +1,35 @@
-html, body {
-  margin: 0;
+html,
+body {
   padding: 0;
+  margin: 0;
 }
 
 body {
-  background: #222 url("../images/baseline_brightness_1_black_18dp.png") repeat center;
+  background: #222 url("../images/baseline_brightness_1_black_18dp.png") repeat
+    center;
+}
+
+:root {
+  color-scheme: light dark;
+  background: white;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background: black;
+    color: white;
+  }
 }
 
 #helloworld {
-    color: #FF0;
-    text-align: center;
-    font-weight: lighter;
+  color: #ff0;
+  font-weight: lighter;
+  margin-left: 20%;
+}
+
+@media screen and (max-width: 500px) {
+  #helloworld {
+    margin-left: 0%;
+  }
 }

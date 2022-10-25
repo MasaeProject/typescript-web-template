@@ -22,6 +22,32 @@
 - **ES6**：目前几乎所有主流浏览器已经支持 ES6 ，因此默认使用新一些的 ES6 标准。如果面向低版本浏览器用户可以自行改回 ES5 。
   - 可以通过 [前端兼容性检查器](https://github.com/miyabi-project/frontend-compatibility-checker) 为用户提供一个降级跳转。
 
+### 代码格式
+
+详见 `.editorconfig`
+
+- 通用
+  - `end_of_line = lf`: unix 风格的换行符
+  - `insert_final_newline = true`: 每个文件都以换行符结尾
+  - `indent_style = space`: 使用空格缩进
+  - `charset = utf-8`: 编码格式统一 utf-8
+  - `indent_size = 2`: 2 个空格缩进
+- HTML
+  - `indent_size = 4`: 4 个空格缩进
+- BAT
+  - `charset = ansi`: ANSI 编码
+  - `end_of_line = crlf`: windows 风格的换行符
+  - `indent_size = 4`: 4 个空格缩进
+
+### 编码环境
+
+本模板在以下环境下开发并针对以下环境进行优化。
+
+- 编辑器： `Visual Studio Code`
+  - 推荐插件：
+    - `EditorConfig for VS Code`: 使 `.editorconfig` 配置生效。
+    - `Prettier - Code formatter`: 设置为 ts 的默认格式化插件。
+- 浏览器： `Google Chrome`
 
 ## 注意事项
 
