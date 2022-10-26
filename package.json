@@ -26,8 +26,10 @@
   },
   "homepage": "https://github.com/miyabi-project/typescript-web-template#readme",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.41.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",
+    "eslint-plugin-import": "^2.26.0",
     "html-webpack-plugin": "^5.5.0",
     "http-server": "^14.1.1",
     "mini-css-extract-plugin": "^2.6.1",
