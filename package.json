@@ -4,12 +4,13 @@
   "description": "雅诗TS网页项目模板",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "webpack --mode development --progress",
-    "release": "npm run clean && webpack --mode production --progress",
+    "build": "npm run lint && webpack --mode development --progress",
+    "release": "npm run clean && npm run lint && webpack --mode production --progress",
     "serve": "npm run clean && npm run build && webpack-dev-server --mode development --progress --host 127.0.0.1 --port 9000 --open",
     "watch": "webpack --mode development --progress --watch",
     "debug": "npm run watch & http-server",
-    "clean": "rm -rf dist/*"
+    "clean": "rm -rf dist/*",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --ignore-pattern *.d.ts"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
   "homepage": "https://github.com/miyabi-project/typescript-web-template#readme",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.41.0",
+    "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "eslint-plugin-import": "^2.26.0",

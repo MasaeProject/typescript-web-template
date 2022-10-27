@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 const cpu = os.cpus();
 const cpuLength = cpu.length;
 const date = new Date();
@@ -66,6 +67,11 @@ module.exports = {
       entryOnly: true,
       banner: ("/* " + license.toString() + "\n*/\n"),
       raw: true,
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: "favicon.ico", to: "./", },
+      ]
     }),
   ],
   // devtool: 'eval-source-map',
