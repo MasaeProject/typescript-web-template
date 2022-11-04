@@ -7,6 +7,11 @@ body {
 body {
   background: #222 url("../images/baseline_brightness_1_black_18dp.png") repeat
     center;
+  font-family: "Source Han Sans", "Noto Sans CJK", "Microsoft YaHei UI",
+    "Microsoft YaHei", "Microsoft JhengHei UI", "Microsoft JhengHei",
+    "PingFang SC", "PingFang TC", "PingFang HK", "Apple LiGothic", "Meiryo",
+    "Hiragino Kaku Gothic Pro", "Segoe UI", "STXihei", "Hei", "黑体", "SimSun";
+  font-weight: lighter;
 }
 
 :root {

@@ -1,11 +1,20 @@
+# NPM
+node_modules
 # 系統快取檔案
 ._*
 .DS_Store
 Thumbs.db
 __*
-# NPM
-node_modules
+# 备份和临时文件
+*.iml
+*.sw*
+*.un~
+.*.*~
+*.bak
+*.tmp
+*.tmp.*
 # 生成結果檔案
+/index.html
 dist/*
 bin/*
 *.exe
@@ -20,3 +29,4 @@ web.config
 *.tar.*
 # 其他
 .VSCodeCounter
+.idea
