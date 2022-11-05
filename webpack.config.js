@@ -8,21 +8,22 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+// const CopyWebpackPlugin = require("copy-webpack-plugin");
+const ProgressBarPlugin = require("progress-bar-webpack-plugin");
 const cpu = os.cpus();
 const cpuLength = cpu.length;
 const date = new Date();
 const packageJSON = JSON.parse(fs.readFileSync("./package.json", "utf8"));
 const license = [
-  `${packageJSON.description ?? ""} ${packageJSON.version ? "v" + packageJSON.version : ""} build ${date.toISOString()}`,
+  `${packageJSON.description ?? ""} ${packageJSON.version ? "v" + packageJSON.version : ""} (${date.toISOString()})`,
   `Copyright (c) ${date.getFullYear()} ${packageJSON.author ?? ""} ${packageJSON.name ?? ""}${packageJSON.license ? " is licensed under " + packageJSON.license : ""}${packageJSON.copyright ? "\n" + packageJSON.copyright : ""}`
 ].join("\n");
 console.log([
-  "Miyabi TypeScript Template 1.0 by KagurazakaYashi",
-  `START: ${date}`,
+  "基于 Miyabi TypeScript Template 2.0 (KagurazakaYashi) 模板构建",
+  `启动时间: ${date}`,
   license,
-  `CONFIG: ${__filename}`,
-  `CPU: ${cpuLength} x ${cpu[0].model}`
+  `配置文件: ${__filename}`,
+  `启用处理器核数: ${cpuLength} x ${cpu[0].model}`
 ].join("\n"));
 module.exports = {
   entry: "./src/index.ts",
@@ -52,7 +53,7 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "dist"),
+      directory: __dirname,
     },
     compress: false,
     host: "127.0.0.1",
@@ -79,8 +80,13 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      template: "index.html"
+      filename: path.resolve(__dirname, "index.html"),
+      template: path.resolve(__dirname, "src/html/index.html"),
+      // favicon: path.resolve(__dirname, "favicon.ico"),
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true
+      }
     }),
     new MiniCssExtractPlugin({
       filename: packageJSON.name + ".css"
@@ -90,10 +96,17 @@ module.exports = {
       banner: ("/* " + license.toString() + "\n*/\n"),
       raw: true,
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: "favicon.ico", to: "./", },
-      ]
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     { from: "data.json", to: "./", },
+    //   ]
+    // }),
+    new ProgressBarPlugin({
+      format: "编译已完成 :percent [:bar] 用时 :elapsed 秒 :msg",
+      clear: false,
+      width: 50,
+      complete: "#",
+      incomplete: "_",
     }),
   ],
   // devtool: "eval-source-map",
