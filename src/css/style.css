@@ -1,9 +1,11 @@
+/* 网页无边距 */
 html,
 body {
   padding: 0;
   margin: 0;
 }
 
+/* 图片引入示例和常见字体 */
 body {
   background: #222 url("../images/baseline_brightness_1_black_18dp.png") repeat
     center;
@@ -14,12 +16,14 @@ body {
   font-weight: lighter;
 }
 
+/* 主题颜色 */
 :root {
   color-scheme: light dark;
   background: white;
   color: black;
 }
 
+/* 自动匹配系统暗色模式 */
 @media (prefers-color-scheme: dark) {
   :root {
     background: black;
@@ -27,12 +31,23 @@ body {
   }
 }
 
+/* h1 中显示的文本 */
 #helloworld {
-  color: #ff0;
+  color: #FF0;
   font-weight: lighter;
   margin-left: 20%;
 }
 
+#helloworld a {
+  color: skyblue;
+  text-decoration: none;
+}
+
+#helloworld a:hover {
+  color: pink;
+}
+
+/* 响应式布局 */
 @media screen and (max-width: 500px) {
   #helloworld {
     margin-left: 0%;

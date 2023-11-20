@@ -1,6 +1,6 @@
 ![typescript-web-template](favicon.ico)
 
-# 雅诗TS网页项目模板
+# 雅诗 TS 网页项目模板
 
 用于初始化 TS 网页项目，一键完成文件结构、代码压缩、热重载的配置。
 
@@ -65,6 +65,7 @@
   - `css`: 样式文件夹
   - `images`: 媒体文件夹
   - `*.ts`: TS 源代码
+- `index.html`: 生成好的网页
 
 ## 使用
 
@@ -72,7 +73,12 @@
 2. 修改 `package.json` 中所有的项目信息和版权信息为自己的。
 3. 修改 `README.md` 和 `LICENCE` 为自己的。
 4. 执行 `npm i` 下载第三方库。
-5. 执行 `npm run serve` 启动项目。
+5. 在 `src/images` 中存放你的多媒体素材。
+6. 打开 `src/html/index.html` 编辑网页结构。
+7. 打开 `src/css/style.css` 编辑 CSS 样式。
+8. 打开 `src/main.ts` 编辑代码。
+9. 执行 `npm run serve` 启动项目。
+10. 将生成好的网页 `index.html` 和 `dist` 文件夹一起复制到网页服务器。
 
 ### 可用 NPM 脚本
 

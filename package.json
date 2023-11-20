@@ -1,6 +1,6 @@
 {
   "name": "typescript-web-template",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "雅诗 TypeScript 网页项目模板",
   "main": "webpack.config.js",
   "scripts": {
