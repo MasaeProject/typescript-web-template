@@ -1,0 +1,20 @@
+/* 默认样式 */
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", "Source Han Sans", "Noto Sans CJK SC", "WenQuanYi Micro Hei", "SimSun", "STSong", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
+}
+
+/* 暗色模式 */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: #121212;
+    color: #e0e0e0;
+  }
+
+  h1 {
+    color: #bb86fc;
+  }
+}

@@ -1,47 +1,24 @@
 {
-  "name": "typescript-web-template",
-  "version": "2.1.0",
-  "description": "雅诗 TypeScript 网页项目模板",
+  "name": "web2",
+  "version": "1.0.0",
   "main": "webpack.config.js",
   "scripts": {
-    "build": "npm run lint && webpack --mode development",
-    "release": "npm run clean && npm run lint && webpack --mode production",
-    "serve": "npm run clean && npm run build && webpack-dev-server --mode development --host 127.0.0.1 --open",
-    "watch": "webpack --mode development --watch",
-    "debug": "npm run watch & http-server",
-    "clean": "rm -f index.html && rm -rf dist/*",
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx src --ignore-pattern *.d.ts"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/miyabi-project/typescript-web-template.git"
-  },
-  "keywords": [
-    "typescript",
-    "template"
-  ],
-  "author": "KagurazakaYashi",
-  "license": "MulanPSL-2.0",
-  "bugs": {
-    "url": "https://github.com/miyabi-project/typescript-web-template/issues"
-  },
-  "homepage": "https://github.com/miyabi-project/typescript-web-template#readme",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.41.0",
-    "copy-webpack-plugin": "^11.0.0",
-    "css-loader": "^6.7.1",
-    "css-minimizer-webpack-plugin": "^4.2.2",
-    "eslint-plugin-import": "^2.26.0",
-    "html-webpack-plugin": "^5.5.0",
-    "http-server": "^14.1.1",
-    "mini-css-extract-plugin": "^2.6.1",
-    "progress-bar-webpack-plugin": "^2.1.0",
-    "style-loader": "^3.3.1",
-    "terser-webpack-plugin": "^5.3.6",
-    "ts-loader": "^9.4.1",
-    "typescript": "^4.8.4",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0",
-    "webpack-dev-server": "^4.11.1"
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
+    "mini-css-extract-plugin": "^2.9.2",
+    "style-loader": "^4.0.0",
+    "terser-webpack-plugin": "^5.3.11",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.7.3",
+    "webpack": "^5.97.1",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
   }
 }
