@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auto Redirect to Page 1</title>
+  <script>
+    // 自动检测用户语言
+    window.onload = function() {
+      const lang = navigator.language || navigator.userLanguage; // 获取浏览器语言
+      if (lang.startsWith('zh')) {
+        // 如果语言是中文，跳转到 zh/page1.html
+        window.location.href = '/zh/page1.html';
+      } else {
+        // 否则，跳转到 en/page1.html
+        window.location.href = '/en/page1.html';
+      }
+    };
+  </script>
+</head>
+<body>
+  <h1>Redirecting...</h1>
+</body>
+</html>

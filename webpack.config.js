@@ -1,5 +1,6 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -26,26 +27,68 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.css$/,
-          use: [isProduction ? 'style-loader' : 'style-loader', 'css-loader'],
+          use: [isProduction ? MiniCssExtractPlugin.loader : 'style-loader', 'css-loader'],
+        },
+        {
+          test: /\.(png|jpe?g|gif|webp|svg)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/images/[name].[contenthash][ext][query]',
+          },
+        },
+        {
+          test: /\.(mp4|webm|ogg)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/videos/[name][ext][query]',
+          },
+        },
+        {
+          test: /\.pdf$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/pdfs/[name][ext][query]',
+          },
         },
       ],
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: './src/pages/page1/index.html',
-        chunks: ['page1'],
-        filename: 'page1.html',
+      new MiniCssExtractPlugin({
+        filename: '[name].[contenthash].css',
       }),
       new HtmlWebpackPlugin({
-        template: './src/pages/page2/index.html',
+        template: './src/pages/page1/zh.html',
+        chunks: ['page1'],
+        filename: 'zh/page1.html',
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/pages/page2/zh.html',
         chunks: ['page2'],
-        filename: 'page2.html',
+        filename: 'zh/page2.html',
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/pages/page1/en.html',
+        chunks: ['page1'],
+        filename: 'en/page1.html',
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/pages/page2/en.html',
+        chunks: ['page2'],
+        filename: 'en/page2.html',
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+        filename: 'index.html',
+        inject: false,
       }),
     ],
     devServer: {
       static: path.resolve(__dirname, 'dist'),
       compress: true,
       port: 9000,
+      devMiddleware: {
+        writeToDisk: true,
+      },
     },
   };
 };
