@@ -1,6 +1,23 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const WebpackBar = require('webpackbar');
+
+
+const pages = [
+  { name: 'page1', languages: ['zh', 'en'] },
+  { name: 'page2', languages: ['zh', 'en'] },
+];
+
+const htmlPlugins = pages.flatMap(page =>
+  page.languages.map(lang => 
+    new HtmlWebpackPlugin({
+      template: `./src/pages/${page.name}/${lang}.html`,
+      chunks: [page.name],
+      filename: `${lang}/${page.name}.html`,
+    })
+  )
+);
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
@@ -50,32 +67,21 @@ module.exports = (env, argv) => {
             filename: 'assets/pdfs/[name][ext][query]',
           },
         },
+        {
+          test: /\.(woff|woff2|eot|ttf|otf)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/fonts/[name].[contenthash][ext][query]',
+          },
+        },
       ],
     },
     plugins: [
+      new WebpackBar(),
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
       }),
-      new HtmlWebpackPlugin({
-        template: './src/pages/page1/zh.html',
-        chunks: ['page1'],
-        filename: 'zh/page1.html',
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/pages/page2/zh.html',
-        chunks: ['page2'],
-        filename: 'zh/page2.html',
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/pages/page1/en.html',
-        chunks: ['page1'],
-        filename: 'en/page1.html',
-      }),
-      new HtmlWebpackPlugin({
-        template: './src/pages/page2/en.html',
-        chunks: ['page2'],
-        filename: 'en/page2.html',
-      }),
+      ...htmlPlugins,
       new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
