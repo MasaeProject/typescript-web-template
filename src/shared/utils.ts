@@ -1,3 +1,3 @@
 export function sharedFunction() {
-  console.log("This is a shared function!");
+  console.log("这是共享的代码。");
 }
