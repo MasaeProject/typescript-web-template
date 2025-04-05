@@ -1,36 +1,54 @@
-const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const fs = require('fs');
-const WebpackBar = require('webpackbar');
+import path from 'path';
+import fs from 'fs';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import WebpackBar from 'webpackbar';
+import { fileURLToPath } from 'url';
 
-// 假设语言配置文件位于 "locales" 目录下
+console.log(new Date(), 'MasaeProject::typescript-web-template');
+
+// __dirname in ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// 讀取 package.json 檔案
+const packageJsonPath = path.resolve(__dirname, 'package.json');
+const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
+console.log(`>> ${packageJson.name}  v${packageJson.version}`);
+
+// 多語言配置
 const localesDir = path.resolve(__dirname, 'src/locales');
-console.log("多语言配置文件夹:", localesDir);
-// 获取所有语言配置文件
+console.log('i18n DIR:', localesDir);
 const languages = fs.readdirSync(localesDir).map(file => {
   const lang = path.basename(file, path.extname(file));
-  const filepath = path.join(localesDir, file)
-  const config = require(filepath);
-  console.log("    ", lang, "->", filepath);
+  const filepath = path.join(localesDir, file);
+  const config = JSON.parse(fs.readFileSync(filepath, 'utf-8'));
+  console.log('  ', lang, '->', filepath);
   return { lang, config };
 });
 
-// 假设页面配置文件位于 "pages" 目录下
+// 頁面配置
 const pagesDir = path.resolve(__dirname, 'src/pages');
-console.log("网页文件夹:", pagesDir);
+console.log('HTML DIR:', pagesDir);
 const pages = fs.readdirSync(pagesDir).map(dir => {
   const pageName = path.basename(dir);
   const template = path.join(pagesDir, dir, 'index.html');
   const style = path.join(pagesDir, dir, 'style.css');
-  console.log("    ", pageName, "->", template, style);
+  console.log('  ', pageName, '->', template, style);
   return { pageName, template, style };
 });
 
-module.exports = (env, argv) => {
+/**
+ * Webpack 配置函式
+ * @param {Object} env - 環境變數
+ * @param {Object} argv - 命令列引數
+ * @returns {import('webpack').Configuration} Webpack 配置物件
+ */
+export default (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
+    // 入口檔案配置
     entry: pages.reduce((entries, { pageName, style }) => {
       entries[pageName] = [
         path.resolve(__dirname, `src/pages/${pageName}/script`),
@@ -38,14 +56,20 @@ module.exports = (env, argv) => {
       ];
       return entries;
     }, {}),
+
+    // 輸出檔案配置
     output: {
       filename: '[name]/[name].[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
       clean: true,
     },
+
+    // 模組解析配置
     resolve: {
       extensions: ['.ts', '.js'],
     },
+
+    // 模組載入器配置
     module: {
       rules: [
         {
@@ -87,25 +111,28 @@ module.exports = (env, argv) => {
         },
       ],
     },
+
+    // 外掛配置
     plugins: [
       new WebpackBar(),
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
       }),
-      // 动态生成 HtmlWebpackPlugin 实例
       ...languages.flatMap(({ lang, config }) =>
         pages.map(({ pageName, template }) => new HtmlWebpackPlugin({
-          filename: `${lang}/${pageName}/index.html`, // 根据语言和页面生成文件夹和 HTML
-          template: template, // 使用页面模板
+          filename: `${lang}/${pageName}/index.html`,
+          template: template,
           inject: true,
           templateParameters: {
             language: lang,
-            config: config, // 语言配置数据传递给模板
-            pageName: pageName, // 当前页面名称
+            config: config,
+            pageName: pageName,
           },
         }))
       ),
     ],
+
+    // 開發伺服器配置
     devServer: {
       static: path.resolve(__dirname, 'dist'),
       compress: true,
