@@ -28,7 +28,7 @@ open http://localhost:9000
 ## 可用命令
 
 - `npm run start`: 启动一个网页服务器，可以在浏览器中浏览网页，当代码被修改时，可以自动重载。
-- `npm run build`: 将网页生成到 `./dist/` 文件夹。
+- `npm run build`: 将网页生成到 `./dist/` 文件夹(正式版模式)。
 - `npm run lint`: 检查代码是否有问题。
 - `npm run lint:fix`: 尝试修复这些问题。
 - `npm run electron`: 作为一个单独的应用程序运行，而不是在网页浏览器中浏览。

@@ -1,6 +1,11 @@
-const { spawn } = require('child_process');
-const path = require('path');
-const fs = require('fs');
+import { spawn } from 'child_process';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+
+// ESM 的 __dirname 实现
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // 預設值
 const DEFAULT_LANG = 'en';
@@ -37,7 +42,7 @@ const targetPath = path.join('dist', lang, page, 'index.html');
  */
 const checkTemplateExists = () => {
     // 構造模板檔案的路徑
-    const templatePath = path.join('src/pages', page, 'index.html');
+    const templatePath = path.join(__dirname, '..', 'src/pages', page, 'index.html');
     // 檢查模板檔案是否存在
     return fs.existsSync(templatePath);
 };
@@ -55,7 +60,7 @@ console.log(`  PAGE: ${page}`);
 console.log(`  TARGET: ${targetPath}`);
 
 // 啟動 webpack --watch 以監聽檔案變更
-const webpack = spawn('npx', ['webpack', '--watch'], {
+const webpack = spawn('npx', ['webpack', '--watch', '--mode=development'], {
     stdio: 'inherit',
     shell: true,
 });

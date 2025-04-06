@@ -34,6 +34,9 @@ function createWindow() {
     },
   });
 
+  // 禁用瀏覽器視窗的選單列
+  win.setMenu(null);
+
   // 構建要載入的 HTML 檔案路徑
   const filePath = path.join(__dirname, 'dist', lang, page, 'index.html');
   console.log(`[Electron] LOAD: ${filePath}`); // 輸出載入的檔案路徑
