@@ -54,5 +54,5 @@ app.whenReady().then(createWindow);
 // 當所有視窗關閉時，退出應用
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') // 在 macOS 上除外
-  app.quit();
+    app.quit();
 });

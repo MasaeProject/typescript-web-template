@@ -15,6 +15,8 @@ const __dirname = path.dirname(__filename);
 const packageJsonPath = path.resolve(__dirname, 'package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 console.log(`>> ${packageJson.name}  v${packageJson.version}`);
+console.log('CONFIG:', __filename);
+console.log('ROOT DIR:', __dirname);
 
 // 多語言配置
 const localesDir = path.resolve(__dirname, 'src/locales');
@@ -134,7 +136,11 @@ export default (env, argv) => {
 
     // 開發伺服器配置
     devServer: {
-      static: path.resolve(__dirname, 'dist'),
+      static: {
+        directory: path.resolve(__dirname, 'dist'),
+        watch: true, // 只监听这个目录
+      },
+      watchFiles: ['src/**/*'],
       compress: true,
       port: 9000,
       devMiddleware: {

@@ -1,0 +1,16 @@
+{
+    // 儲存時自動修復 ESLint 報錯
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always",
+        "source.fixAll.eslint": "always"
+    },
+    // 使用 VS Code 的 ESLint 外掛來校驗
+    "eslint.validate": [
+        "javascript",
+        "typescript"
+    ],
+    // 格式化優先使用 ESLint，而不是內建格式器
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    // 自動儲存
+    // "files.autoSave": "onWindowChange"
+}
