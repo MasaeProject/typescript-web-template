@@ -50,7 +50,11 @@ export default (env, argv) => {
   const isProduction = argv.mode === 'production';
 
   return {
-    // 入口檔案配置
+    // 配置模式，根據環境變數決定是開發模式還是生產模式
+    mode: isProduction ? 'production' : 'development',
+    // 來源地圖配置，生產模式下不生成來源地圖，開發模式下生成 source-map
+    devtool: isProduction ? false : 'source-map',
+    // 入口檔案配置，根據頁面配置動態生成入口檔案
     entry: pages.reduce((entries, { pageName, style }) => {
       entries[pageName] = [
         path.resolve(__dirname, `src/pages/${pageName}/script`),
@@ -58,20 +62,17 @@ export default (env, argv) => {
       ];
       return entries;
     }, {}),
-
-    // 輸出檔案配置
+    // 輸出檔案配置，設定打包後的檔案名稱、路徑和是否清除舊檔案
     output: {
       filename: '[name]/[name].[contenthash].js',
       path: path.resolve(__dirname, 'dist'),
       clean: true,
     },
-
-    // 模組解析配置
+    // 模組解析配置，設定可以解析的檔案副檔名
     resolve: {
       extensions: ['.ts', '.js'],
     },
-
-    // 模組載入器配置
+    // 模組載入器配置，設定不同型別檔案的處理方式
     module: {
       rules: [
         {
@@ -113,32 +114,32 @@ export default (env, argv) => {
         },
       ],
     },
-
-    // 外掛配置
+    // 外掛配置，設定使用的 Webpack 外掛
     plugins: [
       new WebpackBar(),
       new MiniCssExtractPlugin({
         filename: '[name].[contenthash].css',
       }),
+      // 根據語言和頁面配置動態生成 HTML 檔案
       ...languages.flatMap(({ lang, config }) =>
         pages.map(({ pageName, template }) => new HtmlWebpackPlugin({
           filename: `${lang}/${pageName}/index.html`,
-          template: template,
+          template,
           inject: true,
+          chunks: [pageName], // 只注入當前頁面需要的 JS
           templateParameters: {
             language: lang,
-            config: config,
-            pageName: pageName,
-          },
+            config,
+            pageName
+          }
         }))
       ),
     ],
-
-    // 開發伺服器配置
+    // 開發伺服器配置，設定開發伺服器的行為
     devServer: {
       static: {
         directory: path.resolve(__dirname, 'dist'),
-        watch: true, // 只监听这个目录
+        watch: true, // 只監聽這個目錄
       },
       watchFiles: ['src/**/*'],
       compress: true,

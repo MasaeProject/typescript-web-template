@@ -2,9 +2,9 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "RUN Server",
       "type": "node",
       "request": "launch",
-      "name": "DevBrowser",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run",
@@ -14,9 +14,20 @@
       "cwd": "${workspaceFolder}"
     },
     {
+      "name": "RUN Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:9000",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMaps": true,
+      "sourceMapPathOverrides": {
+        "webpack:///./src/*": "${webRoot}/*"
+      }
+    },
+    {
+      "name": "RUN Electron",
       "type": "node",
       "request": "launch",
-      "name": "DevElectron",
       "runtimeExecutable": "npm",
       "runtimeArgs": [
         "run",

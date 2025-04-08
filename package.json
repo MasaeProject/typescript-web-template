@@ -1,11 +1,22 @@
 {
   "name": "typescript-web-template",
-  "version": "3.1.0",
+  "version": "3.1.2",
   "type": "module",
+  "description": "Yashi TS Web Project Template",
+  "keywords": [
+    "Typescript",
+    "Webpage",
+    "Template"
+  ],
+  "author": "神楽坂雅詩(KagurazakaMiyabi)",
+  "license": "WTFPL",
+  "homepage": "https://github.com/MasaeProject/typescript-web-template",
+  "repository": "https://github.com/MasaeProject/typescript-web-template.git",
+  "bugs": "https://github.com/MasaeProject/typescript-web-template/issues",
   "main": "main.js",
   "scripts": {
     "start": "webpack serve --mode development",
-    "build": "webpack --mode production",
+    "build": "npm run clean && webpack --mode production",
     "clean": "rimraf dist",
     "lint": "eslint src --ext .ts,.js --max-warnings=0",
     "lint:fix": "eslint src --ext .ts,.js --fix",
@@ -25,6 +36,7 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
+    "rimraf": "^6.0.1",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.3.14",
     "ts-loader": "^9.5.2",
